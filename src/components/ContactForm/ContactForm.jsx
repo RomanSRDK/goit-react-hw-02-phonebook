@@ -7,7 +7,7 @@ export default class ContactForm extends Component {
     name: '',
     number: '',
   };
-  
+
   handleChanger = event => {
     const { name, value } = event.target;
     this.setState({ [name]: value });
@@ -15,12 +15,8 @@ export default class ContactForm extends Component {
 
   formSubmit = event => {
       event.preventDefault();
-      
-      const newContact = {
-          name: this.state.name,
-          number:this.state.number,
-      }
-     this.props.addContact(newContact);
+
+    this.props.addContact(this.state);
     this.reset();
   };
 
