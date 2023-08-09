@@ -18,7 +18,6 @@ export default class App extends Component {
   };
 
   addContact = newContact => {
-
   const contactsCheck = this.state.contacts.some(
     ({ name }) => name === newContact.name,
   );
@@ -30,18 +29,21 @@ export default class App extends Component {
       contacts: [{ ...newContact, id:nanoid()}, ...prevState.contacts],
   }));
 };
+
   onChange = event => {
    const {name,value}=event.currentTarget
     this.setState({
       [name]:value
     });
   };
+
 onButtonDelete =  id => {
-    this.setState({
-      contacts: this.state.contacts.filter(contact => contact.id !== id),
-    });
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(contact => contact.id !== id),
+    }));
   this.reset();
 };
+
   reset = () => {
     this.setState({ filter: '' });
   };
